@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        alert('push/pop test');
+        var nums = new Array();
+        nums.push(5);
+        nums.push(10);
+        nums.push(21);
+        alert(nums);
+        alert(nums[2]);
+        console.log(nums);
+        var n1 = nums.pop();
+        alert(n1);
+        alert(nums);
+        console.log(nums);
+        var n2 = nums.pop();
+        var n3 = nums.pop();
+        
+        alert('list test');
+        nums = new Array();
+        nums[0] = 5;
+        alert(nums);
+        nums[1] = 10;
+        alert(nums);
+        nums[2] = 21;
+        alert(nums[2]);
+        
+        nums = new Array();
+        nums[3] = 21;
+        alert(nums);
+
+        alert('splice test');
+        nums = new Array(5, 10, 21, "hello", 100, 32, 45, 11);
+        nums.splice(5);
+        alert(nums);
+        nums.splice(1, 1);
+        alert(nums);
+        nums.splice(1, 2);
+        alert(nums);
+        nums.splice(2, 1, "hoho");
+        alert(nums);
+        nums.splice(2, 0, "haha");
+        alert(nums);        
+    </script>
+</body>
+</html>
