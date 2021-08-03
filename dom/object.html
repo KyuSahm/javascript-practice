@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var exam = new Object();
+        exam.kor = 30;
+        exam.eng = 70;
+        exam.math = 80;
+        
+        alert(exam.kor + exam.eng);
+        console.log(exam.kor + exam.eng);
+
+        exam.Kor = 20;
+        alert(exam.kor + exam.eng);
+        
+        exam.kor = 20;
+        alert(exam.kor + exam.eng);   
+
+        exam = new Object();
+        exam["kor"] = 10;
+        exam["eng"] = 20;
+        exam["math"] = 30;
+        alert(exam["kor"] + exam["eng"]); 
+        var key = "eng";
+        alert(exam[key]); 
+    </script>
+</body>
+</html>
