@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //var exam = new Object();        
+        var exam = {}
+        exam.kor = 30;
+        exam.eng = 70;
+        exam.math = 80;
+        
+        alert(exam.kor + exam.eng);
+        console.log(exam.kor + exam.eng);
+        
+        //exam = new Object();
+        exam = {};
+        exam["kor"] = 10;
+        exam["eng"] = 20;
+        exam["math"] = 30;
+        alert(exam["kor"] + exam["eng"]);
+        
+        exam = {"kor":100, "eng":200, "math":300};
+
+        alert(exam["kor"] + exam["eng"]); 
+        var key = "eng";
+        alert(exam[key]);
+        
+        var ar = [3, 4, 5, 6, exam, [7, 8, 9]]
+        alert(ar[5][1]); // 8 출력
+        alert(ar[4].math); // 30 출력
+
+        var notices = [{"id":1, "title":"hello json"},
+                       {"id":2, "title":"hi json"}, 
+                       {"id":3, "title":"json is easy"}];
+        alert(notices[1]); 
+        alert(notices[1].title);
+    </script>
+</body>
+</html>
