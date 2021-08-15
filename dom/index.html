@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+<!--    
     <script>
         var x = new Number(3);
         var y = 4;
@@ -20,5 +21,19 @@
         alert(w)
         alert(w == undefined)
     </script>
+-->
+    <script>
+        eval('var x = 30;');
+        console.log(x)
+
+        var data = '[ \
+                        {"co":0.2,"so2":0.003,"o3":0.033,"no2":0.006,"pm10":11,"msrdt_de":"20210815","pm25":7,"msrste_nm":"강남구"}, \
+                        {"co":0.4,"so2":0.002,"o3":0.027,"no2":0.01,"pm10":6,"msrdt_de":"20210815","pm25":3,"msrste_nm":"강남대로"}, \
+                        {"co":0.2,"so2":0.002,"o3":0.03,"no2":0.004,"pm10":11,"msrdt_de":"20210815","pm25":6,"msrste_nm":"강동구"}  \
+                    ]';
+        eval("var ar = " + data +";")
+        console.log(ar[0].co, ar[0]["so2"])
+        console.log(data)
+    </script>   
 </body>
 </html>
