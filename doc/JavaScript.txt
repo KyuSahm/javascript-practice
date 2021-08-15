@@ -1,0 +1,413 @@
+1. Browser의 종류
+ - Apple Safari: http://apple.com/safari
+ - Google Chrome: http://google.com/chrome
+ - Mozilla Firefox: http://getfirefox.com
+ - Microsoft Internet Explorer: http://windows.microsoft.com/en-US/windows/products/internet-explorer
+ - 여러 브라우저에서 테스트를 진행해 보는 것이 중요
+ - 크롬의 사용자가 많고, 개발자 도구가 제일 강력하다.
+
+2. 도구
+ - Visual Studio Code: 편집기지만, 다양한 플러그인들이 제공된다.
+
+3. DOM 
+ - 문서 상의 모든 Element를 트리상의 노드로 표현할 수 있음.(예: HTML, XML)
+ - Document Objects(객체 트리 in Memory)
+
+4. Java Script
+ - 전송하는 데이터에 대한 유효성 검사의 필요성에 의해 탄생: 폼 객체에 대한 유효성 검사를 하지 않으면, 불필요한 데이터가 서버로 너무 많이 전송됨 
+ - Java Script를 이용하면 DOM의 특정 Element 및 Browser Window를 객체로 접근해서 수정하거나 유효성 검사를 할 수 있다.
+ - 함수를 통하여 로직을 수행 가능
+ - 기본적으로 HTML Document를 제어하는 것이 주 목적. 
+ - 예)
+      window : Browser window의 사이즈와 위치등을 컨트롤 할 수 있다.
+      window.location : URL을 조작 가능
+      window.location : 열어본 URL 페이지 목록을 순회 가능. 앞으로 뒤로 가기 가능
+      window.document : HTML 내부의 element들의 내용들을 수정할 수 있음
+
+5. Script 정의 영역:
+ - <script>로 감싸서 넣는다.
+   <script>
+       스크립트 코드
+   </script> 
+ - html문서상의 아무위치에 여러번 넣을 수 있다.
+<html>
+</html>
+
+6. 데이터 타입
+1) 정수, 실수, 문자, 문자열
+ - var x => 참조변수이고, 포인터와 다르다. 값이 할당되지 않으면, 실제 메모리 공간에 대한 참조가 아니다.
+ - "x = 3"  => 값이 할당하는 순간에 필요한 공간만큼 할당하고, x 변수는 그 Value형 객체에 대한 참조를 가지고 있음.(auto boxing)
+     var x = 3;
+     var x = 3.7;
+     var x = 'A';
+     var x = "Hello";
+     var x;  // 공간을 얼마나 할당할까?
+     x = 3;
+
+2) 실제 Data를 담을 Wrapper 클래스가 존재: Boolean, Number, String으로 세 가지만 존재
+ - 부울: Boolean
+ - 정수: Number
+ - 실수: Number
+ - 문자: String
+ - 문자열: String 
+
+예)
+var x = 3; => 내부적으로, "var x = new Number(3);"으로 동작함.
+
+var z;
+alert(z) => "undefined"로 출력
+
+var z
+z = 3;
+alert(typeof z) => "number"로 출력
+
+var x;
+alert(x) => "undefined"로 출력
+
+var w;
+alert(w == undefined) => "true" 출력
+
+var num;
+num = 3.4 => new Number(3.4)
+num = 3   => new Number(3)
+num = "3" => new String("3")
+
+3) Array 객체
+- push/pop 메소드를 이용한 데이터 관리 가능
+예)
+ var nums = new Array();
+ nums.push(5);
+ alert(nums)
+ nums.push(10);
+ alert(nums)
+ nums.push(21);
+ alert(nums)
+ console.log(nums)    => 웹 브라우저의 개발자 도구(F12)의 Console에서 볼 수 있음.
+ var n1 = nums.pop();
+ alert(nums)
+ var n2 = nums.pop();
+ alert(nums)
+ var n3 = nums.pop();
+ alert(nums)
+
+- 인덱스를 이용한 데이터 관리(List)
+예)
+ var nums = new Array();
+ nums[0] = 5;
+ alert(nums)
+ nums[1] = 10;
+ alert(nums)
+ nums[2] = 21;
+ alert(nums)
+ alert(nums[0])
+ alert(nums[1])
+ alert(nums[2])
+
+ var nums = new Array();
+ nums[3] = 5;        => 0, 1, 2에 대해서 비어 있는 공간 생성
+ alert(nums);
+ alert(nums.length); => 4가 출력.
+
+ var nums = new Array(5); => 5개의 공간 마련
+ var nums = new Array(5, 10, 21); => 3개의 방에 5, 10, 21의 초기값을 가짐
+ var nums = new Array(5, 10, 21, "hello"); => 4개의 방에 5, 10, 21, "hello"의 초기값을 가짐. 다른 종류의 데이터를 가질 수 있음
+ alert(typeof nums[3]); => String
+ var nums = new Array(5, 10, 21, "hello", new Array(2, 3, 4)); => 5개의 방에 5, 10, 21, "hello", array object의 초기값을 가짐. 다른 종류의 데이터를 가질 수 있음
+ alert(nums[4][1]); => "3"에 액세스함.
+ 
+ var nums = new Array(5, 10, 21, "hello");
+ nums.splice(1); => 1번째 인덱스 값부터 끝까지 지움, nums는 5가 됨
+ nums.splice(1, 1); => 1번째 인덱스부터 1개의 값을 지움
+ nums.splice(1, 2); => 1번째 인덱스부터 2개의 값을 지움
+ nums.splice(2, 1, "hoho"); => 2번째 인덱스부터 1개의 값을 지우고, 그 자리에 "hoho"를 삽입함.
+ nums.splice(2, 0, "hoho"); => 2번째 인덱스에 "hoho"를 삽입함.
+
+4) 객체
+- C++, C#, Java의 경우, Class를 정의하고 난 후, 객체를 생성한다.
+- Javascript의 경우, 객체를 생성하고 난후, 정의를 한다.
+- C++, C#, Java : class
+  Javascript : prototype, class
+
+- Class의 멤버변수 접근형태 또는 Map 형태로 사용가능.
+
+- 예)
+  // Class 멤버변수 형태로 표현가능
+  var exam = new Object();
+  exam.kor = 30;
+  exam.eng = 70;
+  exam.math = 80;
+        
+  alert(exam.kor + exam.eng);   => 100 popup
+  console.log(exam.kor + exam.eng);
+  
+  exam.Kor = 20;  => 대소문자 구분, 버그가 만들어지면, 알기가 쉽지 않다.
+  alert(exam.kor + exam.eng);   => 90 popup
+   
+  // Map 형태로 표현가능 (Class 멤버변수 형태와 호환)
+  var exam = new Object();
+  exam["kor"] = 10;   => key, value 속성을 이용할 수 있음. "exam.kor = 10"과 동일
+  exam["eng"] = 20;
+  exam["math"] = 30;
+  alert(exam["kor"] + exam["eng"]); 
+  var key = "eng";
+  alert(exam[key]); 
+  
+- 이런 불편함 때문에, Front script기술들에는 React(자유도), Angular, VueJs를 사용함.
+- TypeScript를 사용하면, Javascript처럼 사용하면서 일반적인 언어처럼 Class를 정의하고, 객체 생성 
+- Javascript: 동적타입언어 (런타임시 변수의 타입이 결정), 사용자 실수로 인한 잠재적인 오류가능성이 많음
+  Typescript: 정적타입언어 (컴파일시 변수의 타입이 결정)
+
+7. Javascript 데이터 객체와 JSON
+- Javascript의 모든 변수는 참조형태로 동작. 모든 타입의 변수는 객체를 생성해야만 함.
+- JSON: Javascript Object Notation. 자바스크립트의 object를 단순하게 표현하는 방법
+
+- Boolean
+  var n = new Boolean(true) => JavaScript 표기법
+  var n = true => JSON 표기법. 내부적으로는 "var n = new Boolean(true)"으로 동작함.
+
+- Number
+  var n = new Number(3) => JavaScript
+  var n = 3 => JSON 표기법
+
+- String
+  var s = new String("hello") => JavaScript
+  var s = "hello" => JSON 표기법
+  var s = 'hello' => JSON 표기법, 홑따옴표도 문자열에 동작. HTML에 내부에서 사용할 때는 "과 충돌이 날 수 있으므로, 홑따옴표를 사용하는 것이 유리. 
+
+- Array
+  var ar = new Array(); => JavaScript
+  var ar = []; => JSON 표기법
+
+- Object
+  var ob = new Object(); => JavaScript
+  var ob = {}; => JSON 표기법
+
+예)
+ var exam = {"kor":100, "eng":200, "math":300};
+
+ alert(exam["kor"] + exam["eng"]);  // 300 출력
+ var key = "eng";
+ alert(exam[key]);  // 200 출력
+        
+ var ar = [3, 4, 5, 6, exam, [7, 8, 9]]
+ alert(ar[5][1]); // 8 출력
+ alert(ar[4].math); // 30 출력
+
+- 중첩된 구조에서의 사용: 복잡한 데이타를 표현하는 방법이 XML에 비해 훨씬 단순.
+ var notices = [{"id":1, "title":"hello json"},
+                    {"id":2, "title":"hi json"}, 
+                    {"id":3, "title":"json is easy"}]; 
+
+ alert(notices[1]); // "[object Object]" 출력
+ alert(notices[1].title); // "hi json" 출력
+
+8. 문자열을 JSON 객체로 만들기 - eval() 사용하기
+
+
+7. Typescript
+- Typescript는 Javascript의 모든 기능을 포함하면서 정적타입을 지원하는 언어
+- 가장 중요한 차이인 Javascript는 동적타입언어 이며 Typescript는 정적타입언어 입니다.
+- 동적타입언어는 런타임시 변수의 타입이 결정되고, 정적타입언어는 컴파일시 변수의 타입이 결정됩니다.
+- Javascript는 타입을 지정하지 않기 때문에 중간 마다 다양한 타입의 값들을 변수에 할당할 수 있습니다.
+  이러한 자유로움 덕분에 진입장벽이 낮고, 적은 코드에서의 생산성이 높습니다.
+- 하지만, Typescript는 변수를 선언할 때마다 타입을 고민해야지만, 많은 코드에서의 생산성이 높습니다. 
+- 생산성의 차이는 변수와 같은 것들을 다양한 곳에서 사용하고 코드의 잠재적 오류의 발생, 등의 요소들이 있습니다.
+- Javascipt의 새로운 기능들이 추가되면 TS에도 꾸준히 업데이트가 진행된다
+- 리액트 개발자들이 Typscript를 사용할 수 있도록 반영을 잘해주며, 큰 생태계를 갖는 장점들도 있다.
+  
+- Typescript type
+ 그렇다면 지금부터 TS의 type종류에 대해 알아보겠습니다.  
+
+● number 과 string
+이는 매우 자주 쓰이는 type이라 다들 쉽게 아실겁니다.
+숫자형과 문자형의 종류이며 선언과 함께 타입을 정해줍니다.
+
+let variable1 : number = 100;  => (type) = (할당 값)
+let variable2 : string = '백';
+variable1 = '백';  // Type 'string' is not assignable to type 'number'.
+variable2 = 100;  // Type 'number' is not assignable to type 'string'.
+
+● null 과 undefined
+Javascript에서는 null과 undefined가 값으로 존재했었죠.
+하지만 Typescript에서는 각각 type으로 존재합니다.
+
+let variable1 : undefined = undefined;
+let variable2 : null = null;
+variable = 100; // 타입 에러
+ 
+● 문자열 리터럴과 숫자 리터럴 타입
+주어진 리터럴의 값들 중 값을 가질 수 있는 타입이다. 값이 주어진 것들 중 정해져야 할 때 사용하면 편할 것 같다.
+
+let variable1 : 1 | 2 | 3;
+variable1 = 1;
+variable1 = 2;
+variable1 = 3;
+variable1 = 4; // 타입 에러
+
+let variable2 : 'a' | 'b' | 'c';
+variable2 = 'a';
+variable2 = 'b';
+variable2 = 'c';
+variable2 = 'd'; // 타입 에러
+
+● any
+any타입은 모든 종류의 type을 허용하는 type이다.
+javascript 처럼 다양한 type의 값들을 넣을 수 있지만, 그렇게 사용하면 Typescript을 사용하는 의미가 사라질 수 있기에 사용을 자제한다.
+
+let variable : any;
+variable = 1;
+variable = 'a';
+variable = {name : 'pyo'};
+variable = () => {};
+
+● void와 never
+void : 아무 값도 반환하지 않는 함수의 반환 type으로 정의 가능하다.
+never : 비정상적인 종료와 무한루프로 인한 종료되지 않을 상황에 정의 가능하다.
+
+function print() : void {
+	console.log("HELLO");
+}
+
+function Oops() : never {
+	throw new Error('error');
+}
+
+function loop() : never {
+	while(1){
+    	...
+    }
+}
+
+● 객체(Object) type
+let obj : object;
+obj = {
+    name : 'pyo',
+    age : 27,
+}
+
+● 열거형(enum) type
+enum을 이용하여 열거형으로 정의한다.
+
+enum Language{
+    Korean,
+    English,
+    Spanish
+}
+console.log(Language['Korean']); // 0
+console.log(Language['English']); // 1
+console.log(Language['Spanish']); // 2
+ 
+이렇게 원소들의 값을 정해주지 않는다면 0 부터 차례대로 들어가게된다.
+하지만 중간에 임의의 숫자로 지정을 해준다면 그 아래부턴 +1씩 증가된 숫자로 들어가게된다.
+또한, 문자열로 주고 싶다면 모든 원소들의 값을 정해줄 수 있다.
+
+enum Language {
+    Korean, //0
+    English = 10, //10
+    Spanish, //11
+}
+
+enum Language {
+    Korean = 'ko',
+    English = 'en', // 하나라도 값이 없다면
+    Spanish = 'sp', // Enum member must have initializer. 에러가 뜬다.
+}
+ 
+그리고 열거형 type은 다른 type과는 달리 컴파일 후에도 객체로 남아있게 된다.
+따라서 런타임 중 값을 가져다 쓸 수 있게 된다. 그렇다는 것은 불필요한 크기를 사용할 수도 있다는 것이다. 
+
+이를 해결할 수 있는 방법은 
+● 상수 열거형 type
+const enum Language {
+    Korean = 'ko',
+    English = 'en',
+    Spanish = 'sp',
+}
+처럼 const로 상수로 정의하는 것이다. 
+
+● 함수 type
+함수 type을 정의하기 위핸 매개변수의 type과 반환 type을 필요로 한다.
+// 함수 선언
+function PrintSum(v1:number, v2:number, s1:string) : void
+{
+    console.log(s1 + (v1+v2));
+}
+
+PrintSum(10, 20, '정답은...!'); // 정답은...!30
+
+// 변수를 함수 타입으로 선언
+let PrintSum2 : (v1:number, v2:number, s1:string) => void = function(v1,v2,s1) {
+	console.log(s1 + (v1+v2));
+}
+
+PrintSum2(10, 20, '정답은...!'); // 정답은...!30
+또한 매개변수 중 선택매개변수를 정의할 수도 있다. 선택 매개변수란 값을 줘도 되고 안줘도 되는 매개변수를 뜻한다.
+끝쪽의 매개변수를 선택매개변수로 사용하고 싶을땐 ? 기호를, 중간의 매개변수를 선택매개변수로 사용하고 싶을땐 유니온 타입은( | )과 undefined를 이용한다.
+
+// 끝쪽에 사용할 경우
+function PrintSum(v1:number, v2:number, s1?:string){
+    s1 ? console.log(s1 + (v1+v2)) : console.log('답은 ' + (v1+v2));
+}
+PrintSum(10,20);				//답은 30
+PrintSum(10,20, '정답은!!!');	 //정답은!!!30
+
+// 중간에 사용할 경우
+function PrintSum(v1:number, v2:number | undefined, s1:string)
+{
+    v2 ? console.log(s1 + (v1+v2)) : console.log(s1 + v1);
+}
+PrintSum(10,undefined,'답은!!'); //답은 10
+PrintSum(10,20, '정답은!!!');	  //정답은!!!30
+ 
+참고서적: 실전 리액트 프로그래밍 (이재승)
+
+8. 자바스크립트 기반 웹 프론트엔드 프레임워크
+- Vue.js, React, Angular
+이번에 알아볼 것은 자바스크립트 기반 웹 프론트엔드 프레임워크 중 대중적으로 가장 많이 알려지고 사랑받고 있는 Vue.js, React, Angular가 무엇이고, 어떤 차이가 있는지 비교해보자!
+
+● 특징 
+- 운영하는 사람이나 업체는 어떤 곳인지
+- Virtual Dom 지원 유무 (Virtual Dom에 관한 적절한 예시 영상)
+- SSR(Server Side Rendering) (SSR 설명 추천 링크)
+- 기타 특징
+
+● React
+- 라이브러리이며 페이스북의 개발자 Jordan Walke가 처음 만들었다. 페이스북에서 지원하며 공동체의 의해 유지보수 된다.
+- Virtual Dom 지원
+- SSR : Next.js
+- JSX(JavaScritp + XML)
+- React Native (앱 개발까지 가능하게 해준다)
+- 라이브러리이지만 컴포넌트를 사용한다면, 프레임워크처럼 규칙을 지켜야한다.
+- 장점은 Virtual Dom이다. Dom 트리를 추상화하여 자바스크립트 객체로 만들어 두고 변경되는 부분은 virtual dom에서 처리하여 성능을 높혔다.
+- SPA(Single Page Application) 방식으로 진행한다면 검색엔진 노출(SEO : Search Engine Optimization)에 관련된 문제를 생각 했을 때 SSR을 염두해 둘 수 밖에 없었는데 Next.js를 사용하여 해결 할 수 있다.
+  그리고 UI를 구성하는 개별적인 뷰 단위인 컴포넌트 단위로 작성하여 생산성과 유지보수에 도움이 된다. JSX(자바스크립트 확장 문법)을 사용하여 컴포넌트를 생성할 수 있다. React Native를 이용해서 앱 개발까지 이어지는 부분이 엄청 큰 메리트가 있지 않을까, 그래서 더욱 사랑 받는 것이라 생가한다.
+
+● Angular
+- 타입스크립트 기반 오픈소스 프레임워크이며 구글 앵귤러팀이 만들고, 구글에서 지원하며 공동체에 의해 유지보수 중에 있다.
+- 양방향 바인딩 지원
+- TypeScript 기반
+- RxJs(Reactive Extensions For JavaScript) : 스트림을 통한 비동기 처리 방식 지원
+- 가장 체계적이고 잘 정리되어있는 문서와 튜토리얼
+- 큰 러닝커브 (배울 것이 많고 어렵다)
+- 라우팅, 상태관리, 폼 유효성 등 필요한 도구를 모아놓은 All In One 프레임워크인 것이 큰 장점이다. 그렇기 때문인지 React와 Vue.js와 비교했을 때 가장 배울 것이 많고 어려운 편이다.
+  가볍고 빠르게 작업을 해야하는 프로젝트 보다는 큰 프로젝트에 사용하기 적합하다.
+- TypeScript를 기반으로 하기 때문에 엄격하지만 그만큼 직관적이고 오류를 줄일 수 있지 않을 까 생각한다.
+- 웹사이트가 빠르고 효율적으로 렌더링 되게 설계되어있다. MPA를 구성하기에는 복잡하고, SPA에서는 매우 빠르게 작동한다. 애초에 구글이 SPA를 위해 만든 것이라고 한다.
+
+● Vue.js
+- 오픈소스 자바스크립트 프레임워크이며 Google의 전 개발자 Even You가 만들었다. 그를 주축으로 유지보수 중에 있다.
+- Virtual Dom 지원
+- SSR: Nuxt.js
+- 양방향과 단방향의 바인딩 지원
+- TypeScript 지원
+- NativeScript
+- Single File Component
+- 작은 러닝커브(학습 및 적응이 빠름)
+- React의 장점인 Virtual Dom과 Angular의 양방향 바인딩을 가져왔다는 점에서 볼 때 앞으로도 발전을 기대해 볼 만한 프레임워크라고 생각한다.
+- 자바스크립트의 기본 스타일을 적극적으로 적용하고 있어서 학습하고 적응하기 쉽다!
+- Single File Component는 .vue 파일에 HTML과 CSS 그리고 Script까지 하나로 묶어서 컴포넌트 단위로 직관적인 구성이 가능하다는 것인데,
+  개인적으로는 파일 분리를 선호하지만 디자이너나 퍼블리셔와 협업하는 과정에서는 생산성이나 유지보수에 큰 도움이 될 것이다.
+
+  
+
+
