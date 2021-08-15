@@ -23,6 +23,13 @@
       window.location : URL을 조작 가능
       window.location : 열어본 URL 페이지 목록을 순회 가능. 앞으로 뒤로 가기 가능
       window.document : HTML 내부의 element들의 내용들을 수정할 수 있음
+ - 자바 스크립트 언어를 아래의 순서대로 학습할 예정
+   데이터
+   연산자
+   제어구조
+   함수
+   Document Objects
+   Browser Object
 
 5. Script 정의 영역:
  - <script>로 감싸서 넣는다.
@@ -407,7 +414,15 @@ PrintSum(10,20, '정답은!!!');	  //정답은!!!30
 - Single File Component는 .vue 파일에 HTML과 CSS 그리고 Script까지 하나로 묶어서 컴포넌트 단위로 직관적인 구성이 가능하다는 것인데,
   개인적으로는 파일 분리를 선호하지만 디자이너나 퍼블리셔와 협업하는 과정에서는 생산성이나 유지보수에 큰 도움이 될 것이다.
 
-9. 문자열 형태의 JSON 데이터를 처리하는 방법
+9. javascript 속성명 관련 특징
+1) 속성명을 문자열로 사용안해도 동작 
+ var data = {id:1, title:"aaa"}         // var data = {"id":1, "title":"aaa"}과 동일.
+ console.log(data.id, data["title"])
+2) 반드시 속성명을 문자열로 사용해야 하는 경우
+ var data2 = {"n id":7, title:"bbb"} // 속성명에 공백이 존재
+ console.log(data2["n id"], data2.title)
+
+10. 문자열 형태의 JSON 데이터를 처리하는 방법
 1) eval() - 사실, 자바 스크립트 코드를 실행해 주는 것. JSON 데이터 파싱으로도 사용가능.
 - 여러 라인의 문자열 연결하기 " \"를 사용하면 됨. => ES6에서는 더 편한 방법으로 바뀜.
    <script>
@@ -432,9 +447,20 @@ PrintSum(10,20, '정답은!!!');	  //정답은!!!30
         console.log(ar[0].co, ar[0]["so2"])
         console.log(data)
     </script>   
-2) Json Parser을 사용하는 방법(좀 더 보편적인 방법)
+2) JSON Parser을 사용하는 방법(좀 더 보편적인 방법)
+- 문자열을 json 데이터로 변경하는 경우 => 문자열의 javascript 속성명이 반드시 ""으로 감싸져 있어야 한다.
+ var data3 = JSON.parse('{"id":1, "title":"ccc"}'); // 정상동작. JSON Parser은 엄격한 rule 적용
+ console.log(data3.id, data3["title"]) 
 
-10. 
+ var data4 = JSON.parse('{id:1, title:"ddd"}'); // 에러 발생
+ console.log(data4.id, data4["title"])
+ 
+- json 데이터를 문자열로 변경하는 경우 => JSON.stringify함수를 사용하면 알아서 속성에 ""를 생성해 줌.
+ var data6 = {id:2, title:"bbb"};
+ var json_data = JSON.stringify(data6);
+ console.log(json_data); // {"id":2,"title":"bbb"} 출력
+
+
 
   
 

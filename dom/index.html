@@ -21,7 +21,7 @@
         alert(w)
         alert(w == undefined)
     </script>
--->
+
     <script>
         eval('var x = 30;');
         console.log(x)
@@ -35,5 +35,24 @@
         console.log(ar[0].co, ar[0]["so2"])
         console.log(data)
     </script>   
+-->
+    <script>
+        var data = {id:1, title:"aaa"}
+
+        console.log(data.id, data["title"])
+
+        var data2 = {"n id":7, title:"bbb"}
+        console.log(data2["n id"], data2.title)
+        
+        var data3 = JSON.parse('{"id":1, "title":"ccc"}'); // JSON Parser은 엄격한 rule 적용
+        console.log(data3.id, data3["title"]) 
+
+        //var data5 = JSON.parse('{id:1, title:"ddd"}'); // 에러 발생
+        //console.log(data5.id, data5["title"]) 
+
+        var data6 = {id:2, title:"bbb"};
+        var json_data = JSON.stringify(data6);
+        console.log(json_data);
+    </script>
 </body>
 </html>
