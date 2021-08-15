@@ -34,8 +34,7 @@
         eval("var ar = " + data +";")
         console.log(ar[0].co, ar[0]["so2"])
         console.log(data)
-    </script>   
--->
+    </script>
     <script>
         var data = {id:1, title:"aaa"}
 
@@ -54,5 +53,23 @@
         var json_data = JSON.stringify(data6);
         console.log(json_data);
     </script>
+--> 
+    <script>
+        var x = 3;
+        var y = 3;
+        
+        // 출력하는 3가지 방법
+        //console.log();
+        //alert();
+        document.write(x == y, ",", x === y); // true, true 출력
+
+        var z = 3;
+        var w = new Number(3);        
+        document.write(z == w, ",", z === w); // true, false 출력
+
+        console.log(3.5-"2"); // 1.5
+        console.log(3 -"2"); // 1
+        console.log(32 > "5");
+    </script>    
 </body>
 </html>

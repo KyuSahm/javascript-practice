@@ -460,6 +460,31 @@ PrintSum(10,20, '정답은!!!');	  //정답은!!!30
  var json_data = JSON.stringify(data6);
  console.log(json_data); // {"id":2,"title":"bbb"} 출력
 
+11. Java Script 연산자
+1) "JavaScript_Operator.png" 참조
+2) "===, !==" 연산자 => 값을 비교하는 것이 아니라, 같은 공간에 생성된 변수인지를 체크
+예)
+ var x = 3; // 3을 저장하는 공간을 생성 후, x라는 변수로 참조
+ var y = 3; // 동일한 값이 3이 이미 생성 되었으므로, 그 공간을 y라는 변수로 참조
+ document.write(x == y, ",", x === y); // true, true. html 문서에 출력
+예)
+ var z = 3;
+ var w = new Number(3);   // 새로운 공간을 생성해서 3을 저장. 이것을 w가 참조     
+ document.write(z == w, ",", z === w); // true, false 출력
+
+3) 암묵적인 타입변환
+- 기본적으로 문자열로 변환되지만, '-'연산은 숫자로 변환
+- 3 + "4" => "34"
+- 3.5 + "4" => "3.54"
+- 3.5 - "2" => 1.5
+- 32 > "5" => true, 숫자로 변환
+
+4) java script 값을 출력하는 세가지 방법
+- console.log();
+- alert();  // 팝업창
+- document.write(); // 문서에 출력
+
+12. Java Script 제어구조
 
 
   
