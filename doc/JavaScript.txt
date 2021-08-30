@@ -485,8 +485,34 @@ PrintSum(10,20, '정답은!!!');	  //정답은!!!30
 - document.write(); // 문서에 출력
 
 12. Java Script 제어구조
+1) 조건문
+- if
+- while
+- do-while
+2) 반복문
+- while
+- for
+- for-in
+3) 선택문
+- else, else if, switch
 
+예) for-in 문
+<script>
+  var ar = ["철수", "영희", "맹구", "동천"]
 
-  
+  /*for (var i = 0; i < 4; i+++)
+      alert(ar[i]); */
+  // 값이 아니라 인덱스를 가져옴    
+  for (var i in ar)    
+    alert(ar[i])
 
+  var ob = {id:1, title:"hello", writeId:"newlec"}
+  // 키값이 추출         
+  for (var i in ob)
+    document.write(i+"<br>"); 
+</script>
 
+13. JavaScript Reference
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript
+
+14. 함수

@@ -66,10 +66,23 @@
         var z = 3;
         var w = new Number(3);        
         document.write(z == w, ",", z === w); // true, false 출력
-
+        document.write("<br>");    
         console.log(3.5-"2"); // 1.5
         console.log(3 -"2"); // 1
         console.log(32 > "5");
+        var ar = ["hello", "hi", "greeting"];
+        var ob = {id:1, title:"hello", writeId:"newlec"}
+        for (var i = 0; i < ar.length; i++)
+            document.write(ar[i]+"<br>");
+
+        // 인덱스 값이 추출    
+        for (var i in ar)
+            document.write(ar[i]+"<br>");
+    
+        // 키값이 추출        
+        for (var i in ob)
+            document.write(i+"<br>");
+    
     </script>    
 </body>
 </html>
