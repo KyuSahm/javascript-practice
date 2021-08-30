@@ -53,7 +53,7 @@
         var json_data = JSON.stringify(data6);
         console.log(json_data);
     </script>
---> 
+
     <script>
         var x = 3;
         var y = 3;
@@ -83,6 +83,35 @@
         for (var i in ob)
             document.write(i+"<br>");
     
+    </script>
+    --> 
+    <script>
+        var add = new Function("x, y", "return x+y;");
+        document.write(add(3,4));
+        document.write("<br>");
+        var minus = function(x, y) {
+            return x - y;
+        };
+        document.write(minus(3,4));
+
+        document.write("<br>");    
+        function multiply(x, y) {
+            return x * y;
+        };
+        document.write(multiply(3,4));
+        document.write("<br>");
+
+        function add2(x, y)
+        {
+            alert(arguments.length);
+            alert(typeof arguments[1]); // number 출력
+            alert(arguments[2]); // "hello" 출력
+            return x + y;
+        }
+
+        // add2 함수로 모든 인자가 객체로 전달됨. 하지만, x, y변수는 앞의 두 인자만 참조함.
+        var sum = add2(2, 3, "hello", 3, 4, 5, 6, 7, 8)
+        document.write(sum);
     </script>    
 </body>
 </html>

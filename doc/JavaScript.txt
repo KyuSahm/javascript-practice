@@ -515,4 +515,29 @@ PrintSum(10,20, '정답은!!!');	  //정답은!!!30
 13. JavaScript Reference
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript
 
-14. 함수
+14. 함수와 표현식
+1) 함수를 정의하는 것이 아니라, 객체를 만드는 방식 - 함수 객체를 다른 곳에 전달하기 쉽다.
+2) 방법1
+var add = new Function("x, y", "return x+y;");
+alert(add(3, 4))
+2) 방법2 - 가장 많이 쓰는 형태임
+var add = function(x, y) {
+  return x + y;
+}
+3) 방법3
+function add(x, y) {
+  return x + y;
+}
+
+15. 함수 인자
+function add2(x, y)
+{
+  alert(arguments.length);
+  alert(typeof arguments[1]); // number 출력
+  alert(arguments[2]); // "hello" 출력
+  return x + y;
+}
+
+// add2 함수로 모든 인자가 객체로 전달됨. 하지만, x, y변수는 앞의 두 인자만 참조함.
+var sum = add2(2, 3, "hello", 3, 4, 5, 6, 7, 8)
+document.write(sum); // 에러가 나지 않고, 5 출력
