@@ -112,8 +112,7 @@
         // add2 함수로 모든 인자가 객체로 전달됨. 하지만, x, y변수는 앞의 두 인자만 참조함.
         var sum = add2(2, 3, "hello", 3, 4, 5, 6, 7, 8)
         document.write(sum);
-    </script>
-    -->
+    </script>    
     <script>        
         alert(a); // 변수로 나중에 사용되면, undefined 출력
         var a = 1;        
@@ -164,6 +163,34 @@
         }
         f1();
         //alert(h); // 에러 발생
+    </script>
+    <script>
+        function f1() {
+          var a = 1;
+          f2();
+          function f2() {
+            a = 2;
+            f3();
+            function f3() {
+              a = 3;
+            }
+          }
+          return a;
+        }
+        var a = f1();
+        alert(a); // 3을 출력
+    </script> -->
+    <script>
+        function f1() {
+          var a = 1; // 지역변수
+          return function f2() {
+            return a; // 상위 함수의 지역변수를 바라봄.
+          } // 함수 객체를 리턴함.
+        }
+      
+        var f = f1(); // f는 함수 객체. 
+        var a = f();  // f1()함수 안에 있는 지역변수 a는 참조하고 있는 하위 함수 f2()가 객체로서 사용될 수 있으므로, 함수 리턴시에도 계속 유지
+        alert(a);     // 1 출력. var f가 null로 되기 전까지는 지역변수 a가 계속 잡혀 있음.
     </script>    
 </body>
 </html>
