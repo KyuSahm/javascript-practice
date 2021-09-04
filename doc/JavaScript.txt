@@ -541,3 +541,74 @@ function add2(x, y)
 // add2 함수로 모든 인자가 객체로 전달됨. 하지만, x, y변수는 앞의 두 인자만 참조함.
 var sum = add2(2, 3, "hello", 3, 4, 5, 6, 7, 8)
 document.write(sum); // 에러가 나지 않고, 5 출력
+
+16. 변수의 가시영역과 global 객체 그리고 전역변수
+예)
+<script>
+  // undefined 출력        
+  alert(a);
+  var a = 1;
+  // var를 사용하지 않으면 변수가 아니라, 윈도우 객체에 b라는 전역객체 속성이 생긴 것임. 
+  b = 1;   // window.b = 1
+  alert(b);
+
+  alert(c);
+  c = 1    // window.c = 1
+</script>
+예2)
+<script>
+  var f1 = function() {
+    a = 1;     // window.a = 1
+    var a = 3; // 지역 변수와 윈도우 객체의 속성이 동일한 이름이라면, 지역변수가 우선 순위가 높음.   
+    a++;
+    alert(a);  // 4 출력
+  }
+</script>
+예3)
+<script>
+  var a = 1;
+  var a = 2; 
+  alert(a);   // 에러 없이 2출력 
+</script>
+예4)
+<script>
+  {
+    var a = 1;
+  }
+  alert(a);   // 에러 없이 1출력. {} 있으나 없으나 동일. 함수의 경우는 영역을 바라본다. 
+</script>
+
+예4)
+<script>
+  function f1() {
+    var a = 1; // 함수안에서만 a가 정의됨
+  }
+  f1();
+  alert(a);    // 에러 발생
+</script>
+
+예5)
+<script>
+  function f1() {
+    a = 1;     // 윈도우 객체의 전역객체 window.a가 생성되고, 1이 할당.
+  }
+  f1();
+  alert(a);    // 1이 출력
+</script>
+
+예6)
+<script>
+  function f1() {
+    var a = 1;
+    f2();
+    function f2() {
+      var a = 2;
+      f3();
+      function f3() {
+        var a = 3;
+      }
+    }
+  }
+  f1();
+  alert(a); // 오류 발생
+</script>

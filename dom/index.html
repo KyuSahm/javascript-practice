@@ -84,7 +84,7 @@
             document.write(i+"<br>");
     
     </script>
-    --> 
+     
     <script>
         var add = new Function("x, y", "return x+y;");
         document.write(add(3,4));
@@ -112,6 +112,58 @@
         // add2 함수로 모든 인자가 객체로 전달됨. 하지만, x, y변수는 앞의 두 인자만 참조함.
         var sum = add2(2, 3, "hello", 3, 4, 5, 6, 7, 8)
         document.write(sum);
+    </script>
+    -->
+    <script>        
+        alert(a); // 변수로 나중에 사용되면, undefined 출력
+        var a = 1;        
+        b = 1;    // var를 사용하지 않으면 변수가 아니라, 윈도우 객체에 b라는 전역객체 속성이 생긴 것임. 
+        alert(b);
+
+        //alert(c); // 전역 변수로 나중에 사용되면, 오류 발생
+        //c = 1        
+        
+        var f1 = function() {
+            a = 1;     // window.a = 1
+            var a = 3; // 지역 변수와 윈도우 객체의 속성이 동일한 이름이라면, 지역변수가 우선 순위가 높음.   
+            a++;
+            alert(a);  // 4 출력
+        }
+
+        f1();
+
+        var d = 1;
+        var d = 2;
+        alert(d);
+
+        {
+            var e = 2;
+        }
+        alert(e);   // 2 출력. {} 있으나 없으나, 동일
+        function f1() {
+            var f = 1;
+        }
+        f1();
+        //alert(f); // 오류 발생
+        function f2() {
+            g = 1; // 윈도우 객체의 전역객체 window.g가 생성되고, 1이 할당.
+        }
+        f2();
+        alert(g);  // 1출력
+
+        function f1() {
+            var h = 1;
+            f2();
+            function f2() {
+            var h = 2;
+            f3();
+            function f3() {
+                var h = 3;
+            }
+            }
+        }
+        f1();
+        //alert(h); // 에러 발생
     </script>    
 </body>
 </html>
