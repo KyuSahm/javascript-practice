@@ -659,3 +659,58 @@ document.write(sum); // 에러가 나지 않고, 5 출력
 </script>
 => 여기서, 상위 함수의 지역변수를 잡고 있는 함수 객체 f2()를 Closure라고 부른다.
    왜냐면, 상위 함수의 지역변수의 close에 대한 키를 갖고 있기 때문.
+
+18. Window 플랫폼을 이용한 대화 parseInt, alert, prompt, confirm
+1) Browser Objects: 아래의 요소들로 구성됨
+- Document Object (UI(동적문서))
+- Cascading Style Sheets (UI(동적문서))
+- Graphics and Media (HTML5 API, 멀티미디어, 네트워크통신, 로컬저장소)
+- Web Application API (HTML5 API, 멀티미디어, 네트워크통신, 로컬저장소)
+- Internet Platform API (HTML5 API, 멀티미디어, 네트워크통신, 로컬저장소)
+
+2) Browser Objects
+- window: 브라우저 윈도우 컨트롤
+- window.location: 브라우저 윈도우의 주소창 컨트롤
+- window.history: 검색한 히스토리 컨트롤(앞으로 뒤로가기)
+- window.document: 윈도우 내부의 image와 스타일을 바꾸기 위한 객체
+
+3) 사용자와 상호작용을 위한 기본 도구
+- "https://developer.mozilla.org/en-US/docs/Web" >> JavaScript >> Reference >> BuiltIn Objects에서 함수들을 찾을 수 있다.
+- Methods
+  alert() => 알림창, 사용자와 상호작용가능
+  confirm() => 확인창, 사용자와 상호작용가능
+  prompt() => 값을 입력받기 위한 대화상자가 뜸. 사용자와 상호작용가능
+  setTimeout()
+  clearTimeout()
+  setInterval()
+  clearInterval()
+- Properties
+  status
+  defaultStatus
+
+예) prompt()
+<script>
+    var x, y;
+    x = prompt("x 값을 입력하세요", 0); // 0은 기본값
+    y = prompt("y 값을 입력하세요", 0); // 0은 기본값
+    
+    alert(typeof x) // "string" 출력
+    window.alert(x + y); // window 생략 가능, x와 y는 문자열 변수. "xy" 출력.
+
+    x = parseInt(x)
+    y = parseInt(y)
+    
+    alert(typeof x) // "number" 출력
+    window.alert(x + y); // window 생략 가능, x와 y는 number. x + y 출력
+    alert(parseInt("abc")); // "NaN" 출력 => Not a number
+    alert(parseInt("12abc")); // 12 출력. 숫자뒤에 문자열을 자동 탈락 시킴. substring을 할 필요없음.
+    alert(parseInt("abc12")); // NaN => Not a number 출력
+</script>
+
+예) confirm()
+<script>
+    var answer;
+    answer = confirm("정말로 삭제하시겠습니까?");
+    if (answer)
+      alert("삭제되었습니다");
+</script>  

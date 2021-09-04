@@ -179,7 +179,7 @@
         }
         var a = f1();
         alert(a); // 3을 출력
-    </script> -->
+    </script>
     <script>
         function f1() {
           var a = 1; // 지역변수
@@ -191,6 +191,30 @@
         var f = f1(); // f는 함수 객체. 
         var a = f();  // f1()함수 안에 있는 지역변수 a는 참조하고 있는 하위 함수 f2()가 객체로서 사용될 수 있으므로, 함수 리턴시에도 계속 유지
         alert(a);     // 1 출력. var f가 null로 되기 전까지는 지역변수 a가 계속 잡혀 있음.
+    </script>
+    <script>
+        var x, y;
+        x = prompt("x 값을 입력하세요", 0); // 0은 기본값
+        y = prompt("y 값을 입력하세요", 0); // 0은 기본값
+        
+        alert(typeof x) // "string" 출력
+        window.alert(x + y); // window 생략 가능, x와 y는 문자열 변수. "xy" 출력.
+
+        x = parseInt(x)
+        y = parseInt(y)
+        
+        alert(typeof x) // "number" 출력
+        window.alert(x + y); // window 생략 가능, x와 y는 number. x + y 출력
+
+        alert(parseInt("abc")); // NaN => Not a number 출력
+        alert(parseInt("12abc")); // 12 출력. 숫자뒤에 문자열을 자동 탈락 시킴. substring을 할 필요없음.
+        alert(parseInt("abc12")); // NaN => Not a number 출력
+    </script> -->
+    <script>
+        var answer;
+        answer = confirm("정말로 삭제하시겠습니까?");
+        if (answer)
+          alert("삭제되었습니다");
     </script>    
 </body>
 </html>
