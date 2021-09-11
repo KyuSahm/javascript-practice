@@ -713,4 +713,17 @@ document.write(sum); // 에러가 나지 않고, 5 출력
     answer = confirm("정말로 삭제하시겠습니까?");
     if (answer)
       alert("삭제되었습니다");
-</script>  
+</script>
+
+19. 이벤트 기반의 프로그래밍
+1) <script>뿐만 아니라, <html> Tag안에서도 사용 가능한 곳이 존재
+=> 이벤트 관련
+예)
+<input onclick=" "/>
+<input onmouseover=" "/>
+
+예)
+<body>
+    <input type="button" value="클릭" onclick="alert('안녕하세요');"/><br/><br/><br/><br/><br/>
+    <span onmouseover="alert('hello');">스팬입니다</span>
+</body>
