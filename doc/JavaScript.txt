@@ -751,7 +751,7 @@ document.write(sum); // 에러가 나지 않고, 5 출력
 <input type="button" value="덧셈" id="btnAdd" onclick="printResult();"/><br/><br/>
 <span id="span1" onmouseover="alert('hello');">스팬입니다</span>    
 </body>
-3) onclick함수의 등록을 <script>내에서 할 수 있음: 코드를 한쪽에서만 관리 가능
+3) onclick함수의 등록을 <script>내에서 할 수 있음: 코드를 <script>내에서만 관리 가능
 <head>
 <script>
   function printResult()
@@ -763,14 +763,60 @@ document.write(sum); // 에러가 나지 않고, 5 출력
       x = parseInt(x);
       y = parseInt(y);
 
-      btnAdd.type = "text";    // type 속성도 바꿀 수 있음.
+      btnAdd.type = "text";     // type 속성도 바꿀 수 있음.
       btnAdd.value = x + y;    
-      span1.innerText = x + y; // span에 감싸진 text의 내용을 바뀜.           
+      span1.innerText = x + y;  // span에 감싸진 text의 내용을 바뀜.           
   }
-  btnAdd.onclick = printResult;
+  btnAdd.onclick = printResult; // btnAdd가 생성되기 전에 실행되면, 오류가 난다.
 </script>
 <body>
 <input type="button" value="덧셈" id="btnAdd"/>
 </body>
+=> 오류발생.
+해결책1: <script>코드를 input type이 정의된 아래로 옮긴다.
+해결책2: body onload 또는 window onload의 이벤트를 사용
+        이미지와 같은 데이터의 로드까지 보장하려면, window onload를 사용해라!!
+        window 객체의 생성은 제일 먼저되나, load는 제일 나중에 된다.
+<head>
+<script>
+  function printResult()
+  {
+      var x, y;
+      x = prompt("x 값을 입력하세요", 0); // 0은 기본값
+      y = prompt("y 값을 입력하세요", 0); // 0은 기본값
+      
+      x = parseInt(x);
+      y = parseInt(y);
+
+      btnAdd.type = "text";     // type 속성도 바꿀 수 있음.
+      btnAdd.value = x + y;    
+      span1.innerText = x + y;  // span에 감싸진 text의 내용을 바뀜.           
+  }
+  function init() 
+  {
+    btnAdd.onclick = printResult; // 모든 element가 로드되고, window가 load된 후, 할당함. printResult()를 할당하면, 함수를 바로 호출
+  }
+  window.onload = init;
+</script>
+<body>
+<input type="button" value="덧셈" id="btnAdd"/>
+</body>         
+
 4) HTML 또는 JavaScript 수정 후, 응답이 없을 때
-=> F12로 개발자 옵션을 띄우고, 동작시킨 후, consol탭으로 확인.   
+=> F12로 개발자 옵션을 띄우고, 동작시킨 후, consol탭으로 확인.
+
+5) HTML 객체 아이디의 명명 방법의 문제
+- 낙타 표기법이 아니라 "-"로 연결한다. JavaScript함수내에서 문제 발생.
+- HTML Element ID에 낙타 표기법을 사용하지 말고, "getElementById"을 사용해서 찾아서 사용해라!
+예)
+<script>
+  function init() 
+  {
+    //btn-add.onclick = printResult; // HTML 명명을 사용시 오류 발생.
+    var btnPrint = document.getElementById("btn-print"); 
+    btnPrint.onclick = printResult;
+  }
+  window.onload = init;
+</script>
+<input type="button" value="덧셈" id="btnAdd"/>
+=> <input type="button" value="덧셈" id="btn-add"/>

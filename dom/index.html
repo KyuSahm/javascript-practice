@@ -15,16 +15,26 @@
             x = parseInt(x);
             y = parseInt(y);
 
+            var btnAdd = document.getElementById("btn-add");
+            
             btnAdd.type = "text";
             btnAdd.value = x + y;
             span1.innerText = x + y;
             //window.alert(x + y); // window 생략 가능, x와 y는 문자열 변수. "xy" 출력.
         }
-        btnAdd.onclick = printResult; // btnAdd가 생성되기 전에 실행되면, 오류가 난다.    
+        function init() 
+        {
+            //btnAdd.onclick = printResult; // 모든 element가 로드되고, window가 load된 후, 할당함.
+            var btnAdd = document.getElementById("btn-add");
+            btnAdd.onclick = printResult;
+        }
+        window.onload = init;
+        //btnAdd.onclick = printResult; // btnAdd가 생성되기 전에 실행되면, 오류가 난다.    
     </script>    
 </head>
 <body>
-    <input type="button" value="덧셈" id="btnAdd"/><br/><br/>
+    <input type="button" value="덧셈" id="btn-add"/><br/><br/>
+    <!--<input type="button" value="덧셈" id="btnAdd"/><br/><br/> -->
     <span id="span1" onmouseover="alert('hello');">스팬입니다</span>
 <!--    
     <input type="button" value="클릭" onclick="alert('안녕하세요');"/><br/><br/>
