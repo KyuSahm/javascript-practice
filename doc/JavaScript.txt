@@ -1018,3 +1018,68 @@ window.addEventListener("load", function() {
         txtSum.value = x + y;
     };
 });
+
+25. 노드 선택 방법 개선하기 - Selectors API(보편적인 방법)
+1) JQuery 기능임.
+2) "Selectors_API_Level_1.png" 참조
+3) querySelector(DOMString selectors);    // 하나의 element를 선택해야 하는 경우
+4) querySelectorAll(DOMString selectors); // 여러 개의 element를 선택해야 하는 경우
+예) querySelector를 이용 - class 명을 이용
+- HTML
+<section id="section3">
+    <h1>Ex3 : Selectors API Level1</h1>
+    <div>
+        <input class="txt-x" type="text" value="0" dir="rtl"/>
+        +
+        <input class="txt-y" type="text" value="0" dir="rtl"/>
+        <input class="btn-add" type="button" value="="/>
+        <input class="txt-sum" type="text" value="0" dir="rtl" readonly/>
+    </div>    
+</section>
+- JavaScript
+window.addEventListener("load", function() {        
+    var section3 = document.getElementById("section3");
+
+    // Section3 아래의 클래스명이 "txt-x"인 엘리먼트 하나를 찾음
+    var txtX = section3.querySelector(".txt-x");
+    var txtY = section3.querySelector(".txt-y");
+    var btnAdd = section3.querySelector(".btn-add");
+    var txtSum = section3.querySelector(".txt-sum");
+
+    btnAdd.onclick = function() {
+        var x = parseInt(txtX.value);
+        var y = parseInt(txtY.value);
+
+        txtSum.value = x + y;
+    };
+});
+
+예) querySelector를 이용 - 속성을 이용
+- HTML
+<section id="section4">
+    <h1>Ex4 : Selectors API Level1 - Name</h1>
+    <div>
+        <input name="x" type="text" value="0" dir="rtl"/>
+        +
+        <input name="y" type="text" value="0" dir="rtl"/>
+        <input name="btn-add" type="button" value="="/>
+        <input name="sum" type="text" value="0" dir="rtl" readonly/>
+    </div>
+</section>
+- JavaScript
+window.addEventListener("load", function() {        
+    var section4 = document.getElementById("section4");
+
+    // Section4 아래의 input type의 name 속성이 'x'인 엘리먼트 하나를 찾음
+    var txtX = section4.querySelector("input[name='x']");
+    var txtY = section4.querySelector("input[name='y']");
+    var btnAdd = section4.querySelector("input[name='btn-add']");
+    var txtSum = section4.querySelector("input[name='sum']");
+
+    btnAdd.onclick = function() {
+        var x = parseInt(txtX.value);
+        var y = parseInt(txtY.value);
+
+        txtSum.value = x + y;
+    };
+});

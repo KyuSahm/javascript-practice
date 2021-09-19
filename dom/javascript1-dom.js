@@ -1,3 +1,40 @@
+//Ex4 : Selectors API Level1 - Name
+window.addEventListener("load", function() {        
+    var section4 = document.getElementById("section4");
+
+    // Section4 아래의 input type의 name 속성이 'x'인 엘리먼트 하나를 찾음
+    var txtX = section4.querySelector("input[name='x']");
+    var txtY = section4.querySelector("input[name='y']");
+    var btnAdd = section4.querySelector("input[name='btn-add']");
+    var txtSum = section4.querySelector("input[name='sum']");
+
+    btnAdd.onclick = function() {
+        var x = parseInt(txtX.value);
+        var y = parseInt(txtY.value);
+
+        txtSum.value = x + y;
+    };
+});
+
+
+//Ex3 : Selectors API Level1 - Class
+window.addEventListener("load", function() {        
+    var section3 = document.getElementById("section3");
+
+    // Section3 아래의 클래스명이 "txt-x"인 엘리먼트 하나를 찾음
+    var txtX = section3.querySelector(".txt-x");
+    var txtY = section3.querySelector(".txt-y");
+    var btnAdd = section3.querySelector(".btn-add");
+    var txtSum = section3.querySelector(".txt-sum");
+
+    btnAdd.onclick = function() {
+        var x = parseInt(txtX.value);
+        var y = parseInt(txtY.value);
+
+        txtSum.value = x + y;
+    };
+});
+
 //Ex2 : 엘리먼트 선택방법 개선하기
 window.addEventListener("load", function() {        
     var section2 = document.getElementById("section2");
