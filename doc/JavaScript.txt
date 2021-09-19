@@ -820,3 +820,27 @@ document.write(sum); // 에러가 나지 않고, 5 출력
 </script>
 <input type="button" value="덧셈" id="btnAdd"/>
 => <input type="button" value="덧셈" id="btn-add"/>
+
+21. 스크립트 코드의 지역화
+1) init() 함수는 window load시 한번만 호출 => 굳이 함수를 만들어서 명명할 필요가 있나?
+2) "document.getElementById("btn-print");"를 필요할 때마다, 중복적으로 수행해야 하나?
+3) 익명함수를 사용할 수 있다. btnAdd가 중복 정의 되므로, 익명함수내의 것은 제거 가능.
+<script>
+    window.onload = function() {               // 함수 이름이 필요없음. 익명함수
+        var btnAdd = document.getElementById("btn-add");
+        btnAdd.onclick = function() {          // 함수 이름이 필요없음. 익명함수
+            var x, y;
+            x = prompt("x 값을 입력하세요", 0); // 0은 기본값
+            y = prompt("y 값을 입력하세요", 0); // 0은 기본값
+            
+            x = parseInt(x);
+            y = parseInt(y);
+
+            //var btnAdd = document.getElementById("btn-add"); // 필요없음. 함수 내에서 외부의 btnAdd를 볼수 있음.
+            
+            btnAdd.type = "text";
+            btnAdd.value = x + y;
+            span1.innerText = x + y;
+        };
+    }
+</script>    

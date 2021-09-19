@@ -5,31 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function printResult()
-        {
-            var x, y;
-            x = prompt("x 값을 입력하세요", 0); // 0은 기본값
-            y = prompt("y 값을 입력하세요", 0); // 0은 기본값
-            
-            x = parseInt(x);
-            y = parseInt(y);
+    <script>        
+        window.onload = function() {
+            var btnAdd = document.getElementById("btn-add");
+            btnAdd.onclick = function() {
+                var x, y;
+                x = prompt("x 값을 입력하세요", 0); // 0은 기본값
+                y = prompt("y 값을 입력하세요", 0); // 0은 기본값
+                
+                x = parseInt(x);
+                y = parseInt(y);
 
-            var btnAdd = document.getElementById("btn-add");
-            
-            btnAdd.type = "text";
-            btnAdd.value = x + y;
-            span1.innerText = x + y;
-            //window.alert(x + y); // window 생략 가능, x와 y는 문자열 변수. "xy" 출력.
+                var btnAdd = document.getElementById("btn-add");
+                
+                btnAdd.type = "text";
+                btnAdd.value = x + y;
+                span1.innerText = x + y;
+            };
         }
-        function init() 
-        {
-            //btnAdd.onclick = printResult; // 모든 element가 로드되고, window가 load된 후, 할당함.
-            var btnAdd = document.getElementById("btn-add");
-            btnAdd.onclick = printResult;
-        }
-        window.onload = init;
-        //btnAdd.onclick = printResult; // btnAdd가 생성되기 전에 실행되면, 오류가 난다.    
     </script>    
 </head>
 <body>
