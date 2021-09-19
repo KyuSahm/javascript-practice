@@ -5,25 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>        
-        window.onload = function() {
-            var btnAdd = document.getElementById("btn-add");
-            btnAdd.onclick = function() {
-                var x, y;
-                x = prompt("x 값을 입력하세요", 0); // 0은 기본값
-                y = prompt("y 값을 입력하세요", 0); // 0은 기본값
-                
-                x = parseInt(x);
-                y = parseInt(y);
-
-                var btnAdd = document.getElementById("btn-add");
-                
-                btnAdd.type = "text";
-                btnAdd.value = x + y;
-                span1.innerText = x + y;
-            };
-        }
-    </script>    
+    <script src="index.js"></script>
+    <script src="test.js"></script>
 </head>
 <body>
     <input type="button" value="덧셈" id="btn-add"/><br/><br/>

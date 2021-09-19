@@ -843,4 +843,51 @@ document.write(sum); // 에러가 나지 않고, 5 출력
             span1.innerText = x + y;
         };
     }
-</script>    
+</script>
+
+22. 코드분리와 이벤트 바인딩 방법 두가지
+1) 현재 방식으로느 스크립트와 HTML을 두 명이 분업화하기가 쉽지 않다.
+2) script 코드를 분리해 놓으면, 분업화 및 재사용성이 높아진다.
+예) 
+- index.html 
+    <script src="index.js"></script> // <script src="index.js"/>와 같이 사용하면, 에러가 남.    
+- index.js
+window.onload = function() {
+    ......
+    };
+}
+3) 여러 스크립트 파일을 함께 사용할  때 초기화 함수의 문제
+- 마지막에 대입한 함수만 적용(code3.js)
+<script src="code1.js"></script>
+<script src="code2.js"></script>
+<script src="code3.js"></script>
+
+code1.js
+window.onload = function() {
+    alert("code1");
+}
+
+code2.js
+window.onload = function() {
+    alert("code2");
+}
+
+code3.js
+window.onload = function() {
+    alert("code3");
+}
+- 이벤트 리스너 함수를 사용하면 여러 개의 함수들을 등록 가능함.
+code1.js
+window.addEventListener("load", function(){
+  alert("code1");
+});
+
+code2.js
+window.addEventListener("load", function(){
+  alert("code2");
+});
+
+code3.js
+window.addEventListener("load", function(){
+  alert("code3");
+});
