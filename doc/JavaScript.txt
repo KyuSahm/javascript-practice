@@ -891,3 +891,38 @@ code3.js
 window.addEventListener("load", function(){
   alert("code3");
 });
+
+23. 계산기 프로그램 만들기
+- ltr, which means left to right and is to be used for languages that are written
+  from the left to the right (like English);
+- rtl, which means right to left and is to be used for languages that are written
+  from the right to the left (like Arabic);
+- HTML file.
+<body>
+    <section>
+        <h1>Ex1 : 계산기 프로그램</h1>
+        <div>
+            <input id="txt-x" type="text" value="0" dir="rtl"/>
+            +
+            <input id="txt-y" type="text" value="0" dir="rtl"/>
+            <input id="btn-add" type="button" value="="/>
+            <input id="txt-sum" type="text" value="0" dir="rtl" readonly/>
+        </div>    
+    </section>
+    <hr/>
+</body>
+
+- Script File
+window.addEventListener("load", function() {        
+    var txtX = document.getElementById("txt-x");
+    var txtY = document.getElementById("txt-y");
+    var btnAdd = document.getElementById("btn-add");
+    var txtSum = document.getElementById("txt-sum");
+
+    btnAdd.onclick = function() {
+        var x = parseInt(txtX.value);
+        var y = parseInt(txtY.value);
+
+        txtSum.value = x + y;
+    };
+});
