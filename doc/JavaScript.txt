@@ -1083,3 +1083,42 @@ window.addEventListener("load", function() {
         txtSum.value = x + y;
     };
 });
+
+26. Node와 Element Node 그리고 ChildNodes, Children
+1) "DOM_Nodes.png" 참조
+2) "childNodes"를 사용하면 줄바꿈 사이에 존재하는 주석과 빈 텍스트들도 child node로 인식해서
+   input tag의 값이 제대로 표시 안됨
+예)
+- HTML
+<section id="section5">
+    <h1>Ex5 : childNodes를 이용한 노드 선택</h1>
+    <div class="box">
+        <input />
+        <input />
+    </div>
+</section>
+- JavaScript
+//Ex5 : childNodes를 이용한 노드 선택
+window.addEventListener("load", function() {        
+    var section5 = document.querySelector("#section5");
+    //var inputs = section5.querySelectorAll("input");
+    var box = section5.querySelector(".box");
+    var input1 = box.childNodes[0];
+    var input2 = box.childNodes[1];
+
+    input1.value = "hello";
+    input2.value = "okay";
+});
+3) "children"을 사용하면, tag형태의 node들만 자식으로 취급하기 때문에,
+   텍스트와 커멘트들은 무시하므로, 원하는 input tag에 텍스트의 값이 제대로 표시 안됨
+예) 
+//Ex5 : childNodes를 이용한 노드 선택
+window.addEventListener("load", function() {        
+    var section5 = document.querySelector("#section5");
+    var box = section5.querySelector(".box");
+    var input1 = box.children[0];
+    var input2 = box.children[1];
+
+    input1.value = "hello";
+    input2.value = "okay";
+});
