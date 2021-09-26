@@ -1146,3 +1146,68 @@ window.addEventListener("load", function() {
 - Notation(12)
 => 속성을 설정하는 것 중에서 표현 형식을 사용할수 있게 해주는 것.
  예) <font color="#ffff00" size="10px">
+
+28. Node 인터페이스
+1) 참고 사이트: https://www.w3.org/TR/2018/WD-dom41-20180201/#introduction-to-the-dom
+2) Node Interface 정의
+interface Node : EventTarget {
+  // Node Type 정의
+  const unsigned short ELEMENT_NODE = 1;
+  const unsigned short ATTRIBUTE_NODE = 2;
+  const unsigned short TEXT_NODE = 3;
+  const unsigned short CDATA_SECTION_NODE = 4;
+  const unsigned short ENTITY_REFERENCE_NODE = 5; // historical
+  const unsigned short ENTITY_NODE = 6; // historical
+  const unsigned short PROCESSING_INSTRUCTION_NODE = 7;
+  const unsigned short COMMENT_NODE = 8;
+  const unsigned short DOCUMENT_NODE = 9;
+  const unsigned short DOCUMENT_TYPE_NODE = 10;
+  const unsigned short DOCUMENT_FRAGMENT_NODE = 11;
+  const unsigned short NOTATION_NODE = 12; // historical
+  readonly attribute unsigned short nodeType;
+  readonly attribute DOMString nodeName;
+  ....
+  // child관련 변수들
+  readonly attribute NodeList childNodes;
+  readonly attribute Node? firstChild;
+  readonly attribute Node? lastChild;
+  readonly attribute Node? previousSibling;
+  readonly attribute Node? nextSibling;
+
+  [CEReactions] attribute DOMString? nodeValue;
+  [CEReactions] attribute DOMString? textContent; // element가 감싸고 있는 텍스트들
+
+  // Node 조작
+  [CEReactions] Node insertBefore(Node node, Node? child);
+  [CEReactions] Node appendChild(Node node);
+  [CEReactions] Node replaceChild(Node node, Node child);
+  [CEReactions] Node removeChild(Node child);
+}
+
+interface DocumentFragment : Node {};
+interface DocumentType : Node {};
+interface Element : Node {};
+interface Text : CharacterData {};
+interface CharacterData : Node {}; 
+...
+// Tag와 class를 이용해서 element를 찾는 기능(Document에만 존재)
+// 각종 노드 타입을 생성하는 API를 가지고 있다.
+interface Document : Node {
+  HTMLCollection getElementsByTagName(DOMString localName);
+  HTMLCollection getElementsByTagNameNS(DOMString? namespace, DOMString localName);
+  HTMLCollection getElementsByClassName(DOMString classNames);
+  ...
+  [CEReactions, NewObject] Element createElement(DOMString localName, optional ElementCreationOptions options);
+  [CEReactions, NewObject] Element createElementNS(DOMString? namespace, DOMString qualifiedName, optional ElementCreationOptions options);
+  [NewObject] DocumentFragment createDocumentFragment();
+  [NewObject] Text createTextNode(DOMString data);
+  [NewObject] CDATASection createCDATASection(DOMString data);
+  [NewObject] Comment createComment(DOMString data);
+  [NewObject] ProcessingInstruction createProcessingInstruction(DOMString target, DOMString data);
+    [NewObject] Attr createAttribute(DOMString localName);
+  [NewObject] Attr createAttributeNS(DOMString? namespace, DOMString qualifiedName);
+  ...
+};
+
+3) HTML 각종 element의 속성 살펴보기
+- "https://www.w3.org/TR/2003/REC-DOM-Level-2-HTML-20030109/html.html" 참조
