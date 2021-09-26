@@ -1122,3 +1122,27 @@ window.addEventListener("load", function() {
     input1.value = "hello";
     input2.value = "okay";
 });
+
+27. Node의 종류와 개체 형식
+1) 문서를 구성하는 Node의 종류(Type)들: "DOM_Node_Types.png", "DOM_Node_Types_1.png" 참조
+- Document(9)
+- DocumentType(10)
+=> 문서 타입을 개체화할 때 형식을 지정. 문서 타입과 관련된 Node들을 사용 
+예) <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML ...>
+- Element(1): Attr(2), Entity(6), EntityReference(5), Text(3)
+=> Element는 tag를 사용해서 표시
+ 예) <textarea><p><font>
+=> Attr은 tag의 속성을 지정
+ 예) <textarea rows="30" cols="40"> <!-- rows, cols은 attr -->
+=> EntityReference는 "&"와 ";"로 감싼다.
+ 예) &lt;, &gt; &nbsp;
+=> Text는 Tag안에 사용하는 것
+ 예) <p>뉴렉처</p> 
+- Comment(8) : 주석
+ 예) <!-- 주석 -->
+- CDATASection(4)
+=> CDATA로 명시한 블록에는 HTML에서 사용하는 특수 기호들을 맘껏 써도 됨.
+ 예) <![CDATA[<,>,]]
+- Notation(12)
+=> 속성을 설정하는 것 중에서 표현 형식을 사용할수 있게 해주는 것.
+ 예) <font color="#ffff00" size="10px">
