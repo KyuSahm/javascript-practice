@@ -1211,3 +1211,101 @@ interface Document : Node {
 
 3) HTML 각종 element의 속성 살펴보기
 - "https://www.w3.org/TR/2003/REC-DOM-Level-2-HTML-20030109/html.html" 참조
+
+29. 엘리먼트 노드의 속성 다루기
+1) HTML Tag의 속성과 Javascript 객체의 속성은 거의 일치
+- "javascrpt_object_attribute.png" 참조
+예)
+- HTML
+<input type="text" id="txt1" value="" />
+<img src="pic1.jpg" id="img1" />
+
+- JavaScript
+var img1 = document.getElementById("img1");
+img1.src = "pic2.jpg";
+2) 사용자의 text input을 받아 이미지 변경하기
+- HTML
+<section id="section6">
+    <h1>Ex6 : 엘리먼트 노드의 속성 변경</h1>
+    <div>
+        <input class="src-input" />
+        <input class="change-button" type="button" value="변경하기"/>
+    </div>
+    <div>
+        <img class="img" src="../images/img1.jpg">
+    </div>
+</section>
+
+- JavaScript
+//Ex6 : 엘리먼트 노드의 속성 변경
+window.addEventListener("load", function() {        
+    var section = document.querySelector("#section6");
+    var srcInput = section.querySelector(".src-input");
+    var changeButton = section.querySelector(".change-button");
+    var img = section.querySelector(".img");
+
+    changeButton.onclick = function() {
+        img.src = "../images/" + srcInput.value;
+    };
+});
+
+3) Select Box의 선택을 받아 이미지 변경하기
+- HTML
+<section id="section6-1">
+    <h1>Ex6-1 : 엘리먼트 노드의 속성 변경</h1>
+    <div>
+        <select class="img-select">
+            <option value="img1.jpg">img1.jpg</option>
+            <option value="img2.jpg">img2.jpg</option>
+            <option value="img3.jpg">img3.jpg</option>
+        </select>
+        <input class="change-button" type="button" value="변경하기"/>
+    </div>
+    <div>
+        <img class="img" src="../images/img1.jpg">
+    </div>
+</section>
+- JavaScript
+//Ex6-1 : 엘리먼트 노드의 속성 변경
+window.addEventListener("load", function() {        
+    var section = document.querySelector("#section6-1");
+    var srcInput = section.querySelector(".src-input");
+    var imgSelect = section.querySelector(".img-select");
+    var changeButton = section.querySelector(".change-button");
+    var img = section.querySelector(".img");
+
+    changeButton.onclick = function() {
+        img.src = "../images/" + imgSelect.value;
+    };
+});
+
+4) HTML5의 datalist의 선택을 받아 이미지 변경하기
+=> Text 입력상자내에 select 할 수 있도록 처리됨.
+- HTML
+<section id="section6-2">
+    <h1>Ex6-2 : 엘리먼트 노드의 속성 변경</h1>        
+    <div>
+        <input class="src-input" type="text" list="img-list"/>
+        <datalist id="img-list">
+            <option value="img1.jpg">img1.jpg</option>
+            <option value="img2.jpg">img2.jpg</option>
+            <option value="img3.jpg">img3.jpg</option>
+        </datalist>
+        <input class="change-button" type="button" value="변경하기"/>
+    </div>
+    <div>
+        <img class="img" src="../images/img1.jpg">
+    </div>
+</section>
+- JavaScript
+//Ex6-2 : 엘리먼트 노드의 속성 변경
+window.addEventListener("load", function() {        
+    var section = document.querySelector("#section6-2");
+    var srcInput = section.querySelector(".src-input");
+    var changeButton = section.querySelector(".change-button");
+    var img = section.querySelector(".img");
+
+    changeButton.onclick = function() {
+        img.src = "../images/" + srcInput.value;
+    };
+});
