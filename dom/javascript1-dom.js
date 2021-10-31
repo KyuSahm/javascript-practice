@@ -1,8 +1,25 @@
+//Ex6-3 : 엘리먼트 노드의 속성 & CSS 속성 변경
+window.addEventListener("load", function() {        
+    var section = document.querySelector("#section6-3");
+    var srcInput = section.querySelector(".src-input");
+    var imgSelect = section.querySelector(".img-select");
+    var changeButton = section.querySelector(".change-button");
+    var img = section.querySelector(".img");
+    var colorInput = section.querySelector(".color-input");
+
+    changeButton.onclick = function() {
+        img.src = "../images/" + srcInput.value;
+        //img.style.border-color = "blue"; // 에러 발생
+        //img.style["border-color"] = colorInput.value; // 방법 1: Key 값을 이용하면 됨.
+        img.style.borderColor = colorInput.value; // 방법 2: - 부분을 CamelCase로 사용하면 동작
+        console.log(img.className); // img의 class 속성값 출력
+    };
+});
+
 //Ex6-2 : 엘리먼트 노드의 속성 변경
 window.addEventListener("load", function() {        
     var section = document.querySelector("#section6-2");
     var srcInput = section.querySelector(".src-input");
-    //var imgList = section.querySelector("#img-list");
     var changeButton = section.querySelector(".change-button");
     var img = section.querySelector(".img");
 

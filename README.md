@@ -1445,3 +1445,68 @@ window.addEventListener("load", function() {
     };
 });
 ```
+#### 엘리먼트의 스타일 변경
+- element.style.XXX 형식
+- element.style.XXX의 값은 모두 문자열 형태(숫자 형태는 없음)
+```javascript
+<script>
+function changeImage()
+{
+  var txt1 = document.getElementById("txt1");
+  var img1 = document.getElemtntById("img1");
+  img1.src = txt1.value;
+  txt1.style.border = "10px solid #0000ff"; // border-width border-style border-color
+  txt1.style.width = "100px";
+}
+</script>
+<body>
+<form>
+  <input id="txt1" />
+  <input type="button" onclick="changeImage();" value="변경" />
+  <img id="img1" src="test.jpg" style="border:5px solid #ff0000;" />
+</form>
+```
+- border-width만 바꾸고 싶다고, JavaScrpt에서 ``txt1.style.border-width="10px";``라고 못함
+  - Javascript에서 ``-``을 명명규칙에서 사용 못함
+- 예제: image의 border의 color 속성만 변경하고 싶은 경우
+  - 방법1: key 값을 이용하는 방법
+  - 방법2: JavaScript내에서 borderColor이라고 CamelCase형태로 사용하면, 자동으로 인식됨
+  - ``image``의 ``class`` 속성에 접근하길 원할 때는 예약어인 ``class``를 JavaScript에서 사용 못함
+    - className을 이용하여 ``class``에 접근 가능
+```html
+<section id="section6-3">
+    <h1>Ex6-3 : 엘리먼트 노드의 속성 & CSS 속성 변경</h1>        
+    <div>
+        <input class="src-input" type="text" list="img-list"/>
+        <datalist id="img-list">
+            <option value="img1.jpg">img1.jpg</option>
+            <option value="img2.jpg">img2.jpg</option>
+            <option value="img3.jpg">img3.jpg</option>
+        </datalist>
+        <input type="color" class="color-input" />
+        <input class="change-button" type="button" value="변경하기"/>
+    </div>
+    <div>
+        <img class="img" src="../images/img1.jpg" style="border:1px solid red;">
+    </div>
+</section>
+```
+```javascript
+//Ex6-3 : 엘리먼트 노드의 속성 & CSS 속성 변경
+window.addEventListener("load", function() {        
+    var section = document.querySelector("#section6-3");
+    var srcInput = section.querySelector(".src-input");
+    var imgSelect = section.querySelector(".img-select");
+    var changeButton = section.querySelector(".change-button");
+    var img = section.querySelector(".img");
+    var colorInput = section.querySelector(".color-input");
+
+    changeButton.onclick = function() {
+        img.src = "../images/" + srcInput.value;
+        //img.style.border-color = "blue"; // 에러 발생
+        img.style["border-color"] = colorInput.value; // 방법 1: Key 값을 이용하면 됨.
+        img.style.borderColor = colorInput.value; // 방법 2: - 부분을 CamelCase로 사용하면 동작
+        console.log(img.className); // img의 class 속성값 출력
+    };
+});
+```  
