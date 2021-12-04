@@ -740,6 +740,91 @@ document.write(sum); // 에러가 나지 않고, 5 출력
     alert(a);     // 1 출력.  var f가 null로 되기 전까지는 지역변수 a가 계속 잡혀 있음.
 </script>
 ```
+## this object 바인드편(bind, call, apply)
+### bind
+- function object(함수 또는 메소드)는 모두 bind를 사용 가능
+- bind 함수를 사용하면, 기존의 함수와 동일한 형태의 bound 함수 객체가 생성해서 리턴
+  - 이 bound 함수의 this는 내가 정한 object로 고정 가능  
+```text
+bind 함수의 정의 -
+For a given function, create a bound function that has the same body as the original function. 
+The this object of bound function is associated with the specified object, and has the specified initial parameters
+```
+- 사용예 1: bind 함수를 통한 새로운 bound 함수 객체 생성
+```javascript
+function sum(num) {
+    return num + this.num1 + this.num2;
+}
+
+var myObj = {num1:20, num2: 3};
+var customSum = sum.bind(myObj);
+console.log(customSum(5));
+```
+```bash
+# 실행 결과
+28
+```
+- 사용예 2: 클래스 함수를 bind한 예
+  - 클래스 객체가 생성될 때, 그 객체의 메소드는 그 객체로 지정된 bound 함수 객체라고 볼 수 있임 
+  - 새로운 bound 함수 객체가 생성되므로, 기존의 bind된 함수는 그대로 임
+```javascript
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    info(){
+        console.log(`x: ${this.x}, y: ${this.y}`);
+    }
+}
+
+var point = new Point(10, 20);
+point.info();
+
+var newInfo = point.info.bind({x: 100, y: 200});
+newInfo();
+point.info();
+```
+```bash
+# 실행 결과
+x: 10, y: 20
+x: 100, y: 200
+# 기존 것은 그대로 임
+x: 10, y: 20
+```
+### call, apply
+- call, apply는 bind와 같은 역할을 하지만 차이점이 있다면 아예 실행까지 한다는 것
+- 둘의 차이
+  - call의 경우 함수를 실행할때 파라메터를 하나씩 넘김
+  - apply는 배열로 넘김
+```javascript
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    info(v, w) {
+        console.log(`x: ${this.x}, y: ${this.y}, v: ${v}, w: ${w}`);
+    }
+}
+
+var point = new Point(10, 20);
+point.info(1, 2);
+
+var customPoint = {x: 100, y: 200};
+point.info.call(customPoint, 20, 30);
+point.info.apply(customPoint, [2, 3]);
+point.info(1, 2);
+```
+```bash
+x: 10, y: 20, v: 1, w: 2
+x: 100, y: 200, v: 20, w: 30
+x: 100, y: 200, v: 2, w: 3
+# 기존의 bound 함수는 그대로임
+x: 10, y: 20, v: 1, w: 2
+```
 ## Window 플랫폼을 이용한 대화
 - parseInt, alert, prompt, confirm
 #### Browser Objects: 아래의 요소들로 구성됨
@@ -1509,4 +1594,5 @@ window.addEventListener("load", function() {
         console.log(img.className); // img의 class 속성값 출력
     };
 });
-```  
+```
+#### 텍스트 노드 추가/삭제 하기
