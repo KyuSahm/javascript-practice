@@ -825,6 +825,42 @@ x: 100, y: 200, v: 2, w: 3
 # 기존의 bound 함수는 그대로임
 x: 10, y: 20, v: 1, w: 2
 ```
+## async, await
+```javascript
+import axios from 'axios'
+
+var testFunction = async function() {
+    var a = await axios.get('<http://www.example.org/example.txt>');
+    console.log(a);
+    console.log("3");
+    return "test"
+}
+
+async function test() {
+    var a = await testFunction();
+    console.log(a);
+}
+console.log("1");
+test();
+console.log("2");
+```
+```bash
+# output
+1
+2
+{
+data:"<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta http-equiv=content-language content=en><meta http-equiv=X-UA-Compatible 
+.....
+script><script src=/static/js/app.9b58081f.js></script></body></html>",
+status:200,
+statusText:"",
+headers: {...},
+config: {...},
+request:[object XMLHttpRequest]
+}
+3
+test
+```
 ## Window 플랫폼을 이용한 대화
 - parseInt, alert, prompt, confirm
 #### Browser Objects: 아래의 요소들로 구성됨
